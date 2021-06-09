@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="css/custom.css"
+          rel="stylesheet">
+<!--    <img src ="https://geographyofrussia.com/wp-content/uploads/2010/04/landscape-egyptian-pyramids-backgrounds-wallpapers.jpg" alt="pyramid">-->
+    <img src ="https://cdni.rt.com/russian/images/2018.11/article/5bdad2c2370f2ce84a8b45a1.jpg" alt="pyramid">
+
+<!--    <img src="https://img1.freepng.ru/20180406/voe/kisspng-tutankhamun-ancient-egypt-curse-of-the-pharaohs-pharaoh-5ac82e18bc2dc2.4643194815230684407708.jpg" alt="ssss">-->
+</head>
+<body>
+
+
+<div th:switch="${users}">
+    <h2 th:case="null" style="position: absolute; top: 0; right: 0; font-size:40px">No users yet!</h2>
+
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <link href="css/index.css"
+                  rel="stylesheet">
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.email}"></td>
+                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/signup" style="position: absolute; top: 90px; right: 4px; font-size:30px; background-color: #93B874; color: white; padding: 14px 25px; text-align: center; text-decoration: none; display: inline-block;">Add a new user</a></p>
+</div>
+</body>
+</html>
