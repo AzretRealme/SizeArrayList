@@ -1,9 +1,6 @@
 package kg.megacom.thymeleaf;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 
 public class User {
     @NotNull
@@ -15,19 +12,25 @@ public class User {
     private String email;
 
     @NotBlank
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$")
+    @Size(min = 10, max = 200, message
+            = "About Me must be between 10 and 200 characters")
     private String password;
-    private boolean isActive = true;
+//    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=()])(?=\\S+$).{8,20}$")
+//    private String password;
+
+    @AssertTrue
+    private boolean isActive;
+//    private boolean isActive = true;
 
     public boolean isActive() {
         return isActive;
     }
 
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
+
     }
 
     public void setActive(boolean active) {

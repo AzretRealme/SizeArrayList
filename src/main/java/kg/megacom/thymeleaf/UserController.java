@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,10 @@ public class UserController {
 
     @GetMapping("/index")
     public String showUserList(Model model) {
-        model.addAttribute("users", userList);
+        List<User> users = new ArrayList<>();
+        users.add(new User("karl", "karla@gmail.com", "1234"));
+        users.add(new User("protothype", "protothype12@gmail.com", "123454"));
+        model.addAttribute("users", users);
         return "index";
     }
 
